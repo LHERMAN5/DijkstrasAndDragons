@@ -1,0 +1,75 @@
+Name: Lauren Herman, Justine Ventura
+ID: 1583304, 1564671
+CMPUT 275 WI 20
+
+Final Project: Dijsktra’s and Dragons
+
+Link to video:  https://drive.google.com/file/d/1LSa88_jDhkcXp8kExVfxktaTo9D04c1w/view?usp=sharing
+
+Included Files:
+*arduino_consts.h
+*levels_and_players.h
+*mesages_and_screens.h
+*messages_and_screens.cpp
+*main.cpp
+*player.h
+*player.cpp
+*knight.h
+*knight.cpp
+*dragon.h
+*dragon.cpp
+*linked_list.h
+*Makefile
+*README
+
+Accessories:
+*Arduino Mega Board
+*TFT LCD Screen Module
+*MicroSD Card
+*joystick
+
+Wiring Instructions:
+1. Connect Arduino analog pin A8 and connect to joystick VRy
+2. Connect Arduino analog pin A9 and connect to joystick VRx
+3. Connect Arduino digital pin 53 and connect to joystick pin SW
+4. Connect Arduino digital 5V pin to breadboard (+) bus. Connect another wire to joystick 5V pin
+5. Connect Arduino digital GND pin to breadboard (-) bus.
+6. Connect another wire to joystick GND pin
+
+Running Instructions:
+1. Connect the properly wired arduino to the PC
+2. In the directory containing the files and use command "make upload" to upload the code to the Arduino and view the game on the LCD screen.
+
+
+Notes and Assumptions:
+https://docs.google.com/document/d/1ijuURDcZElUW8w5QpOaTvhII_jdaZVgFKkAk7TeRAs4/edit?usp=sharing
+Pictured in the doc above is the layout of the classes. 
+
+Player is a parent class from which two subclasses, dragon and knight are created. This demonstrates a basic use of object-oriented programming, specifically inheritance.
+
+Arduino_consts.h contains the share level map and the tft as well as constants for the Arduino display/wiring.
+
+Levels_and_players.h contains the different levels and knight and dragon objects.
+
+Knight.cpp contains player movement functions called by knightTurn.
+
+We referenced https://www.geeksforgeeks.org/shortest-path-in-a-binary-maze/ for my BFS algorithm as it deals with 2D arrays and is helpful as it checks the cells adjacent to the dragon and records distances to the knight. However, instead of using a queue as in most implementations of BFS, I had to use a linked_list.h, taken from weekly exercise 4 on Eclass. It was chosen for its similar functionality to queue and it was the only data structure with a header file readily available. Also we originally used an unordered map of type Coordinate with custom hash and comparison to act as a search tree for the coordinates, as was done in the BFS given for exercise 5, but switched to use the built-in 2D array data structure instead.
+
+We designed five levels for the purpose of this project but by making an array of starting positions using combinations of 0,1,2,3,4,5,  any number of unique levels can be created.
+
+We completed all the milestones we set out, and one stretch goal of adding an additional two levels. 
+
+Knightx, knighty, and dragonx, dragony follow the format of the array with the x representing rows and the y representing columns.
+
+
+Bugs:
+On very rare occasions there is a cell in level 2 that causes the blue block to disappear temporarily. We have not been able to determine the cause of this bug as of now, but it seldom happens and doesn’t affect game play.  Additionally, if the knight intentionally moves to a spot with the dragon on it the game stops, however this is a situation which would not occur in typical or intended gameplay. We could add a case to handle this exception in the future.
+
+
+Contributions:
+
+Justine: dragon movement, classes and program design, general game flow
+I designed and implemented the layout of the classes, making use of shared objects for better modularity. I also incorporated some basic OOP with the players. I created a BFS function to control the dragon’s movement. I also implemented the general flow of the game and how different classes are used in main.cpp.
+
+Lauren: player and block movement, title screens, level design
+I wrote code for knight movement, preview mode, pushing blocks, and detecting when the knight has no available moves. I created the pixelated title cards and designed most of the levels.
